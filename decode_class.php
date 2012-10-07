@@ -1,88 +1,88 @@
 <?php
 
 
-/*
- * ˆÃ†‚ð‰ð“Ç‚·‚éƒNƒ‰ƒXB
+/**
+ * æš—å·ã‚’è§£èª­ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
  */
 class Decode_Class {
-	
-	
-	// ‰ð“Ç—p”z—ñ
-	private $decodeList_k = array(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z);
-	private $decodeList_g = array(z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a);
-	
-	/*
-	 * ƒRƒ“ƒXƒgƒ‰ƒNƒ^B
-	 */
-	public function __construct() {
-	}
-	
-	
-	/*
-	 * ˆÃ†‚ð‰ð“Ç‚·‚éƒNƒ‰ƒXB
-	* @param String ˆÃ†
-	* @return String ‰ð“Ç‚³‚ê‚½•¶ŽšB
-	*/
-	public function getDecodeString($inp_str, $inp_int) {
-		
-		// ‹ô”‚©Šï”‚©B
-		if (bcmod($inp_int, 2) == 0) {
-			// ‹ô”@~‡B
-			return $this->decode_guusuu($inp_str, $inp_int);
-			
-		} else {
-			// Šï”@¸‡B
-			return $this->decode_kisuu($inp_str, $inp_int);
-		}
-	}
-	
-	
-	/*
-	 * ‹ô”‚ÌƒfƒR[ƒhB
-	 */
-	private function decode_guusuu($inp_str, $inp_int) {
-		
-		// ˆÃ†•¶Žš—ñ‚Ì”‚ðŽæ“¾B@26
-		$cnt = count($this->decodeList_g);
-		
-		// ˆÃ†”Žš‚ªˆÃ†•¶Žš—ñ‚Ì”ˆÈ“à‚É‚È‚é‚Ü‚Åˆø‚­B
-		if ($inp_int >= $cnt) {
-    		$decodeInt = bcmod($inp_int, $cnt);
-		} else {
-			$decodeInt = $inp_int;
-		}
-		
-		// ˆÃ†•¶Žš‚ðŠî€‚É‚µ‚ÄŒJ‚èã‚ª‚éŽž‚Ìˆ—B
-		$inputStrNo = array_keys($this->decodeList_g, $inp_str);
-		$getNo = $decodeInt + $inputStrNo[0];
-		if ($cnt <= $getNo) {
-			$getNo -= $cnt;
-		}
-		return $this->decodeList_g[$getNo];
-	}
-	
-	/*
-	 * Šï”‚ÌƒfƒR[ƒhB
-	*/
-	private function decode_kisuu($inp_str, $inp_int) {
-	
-		// ˆÃ†•¶Žš—ñ‚Ì”‚ðŽæ“¾B@26
-		$cnt = count($this->decodeList_k);
-		
-	    // ˆÃ†”Žš‚ªˆÃ†•¶Žš—ñ‚Ì”ˆÈ“à‚É‚È‚é‚Ü‚Åˆø‚­B
-		if ($inp_int >= $cnt) {
-    		$decodeInt = bcmod($inp_int, $cnt);
-		} else {
-			$decodeInt = $inp_int;
-		}
-		
-		// ˆÃ†•¶Žš‚ðŠî€‚É‚µ‚ÄŒJ‚èã‚ª‚éŽž‚Ìˆ—B
-		$inputStrNo = array_keys($this->decodeList_k, $inp_str);
-		$getNo = $decodeInt + $inputStrNo[0];
-		
-		if ($cnt <= $getNo) {
-			$getNo -= $cnt;
-		}
-		return $this->decodeList_k[$getNo];
-	}
+
+
+    // è§£èª­ç”¨é…åˆ—
+    private $decodeList_k = array(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z);
+    private $decodeList_g = array(z,y,x,w,v,u,t,s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c,b,a);
+
+    /**
+     * ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ã€‚
+     */
+    public function __construct() {
+    }
+
+
+    /**
+     * æš—å·ã‚’è§£èª­ã™ã‚‹ã‚¯ãƒ©ã‚¹ã€‚
+    * @param String æš—å·
+    * @return String è§£èª­ã•ã‚ŒãŸæ–‡å­—ã€‚
+    */
+    public function getDecodeString($inp_str, $inp_int) {
+
+        // å¶æ•°ã‹å¥‡æ•°ã‹ã€‚
+        if (bcmod($inp_int, 2) == 0) {
+            // å¶æ•°ã€€é™é †ã€‚
+            return $this->decode_guusuu($inp_str, $inp_int);
+
+        } else {
+            // å¥‡æ•°ã€€æ˜‡é †ã€‚
+            return $this->decode_kisuu($inp_str, $inp_int);
+        }
+    }
+
+
+    /**
+     * å¶æ•°ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ã€‚
+     */
+    private function decode_guusuu($inp_str, $inp_int) {
+
+        // æš—å·æ–‡å­—åˆ—ã®æ•°ã‚’å–å¾—ã€‚ã€€26
+        $cnt = count($this->decodeList_g);
+
+        // æš—å·æ•°å­—ãŒæš—å·æ–‡å­—åˆ—ã®æ•°ä»¥å†…ã«ãªã‚‹ã¾ã§å¼•ãã€‚
+        if ($inp_int >= $cnt) {
+            $decodeInt = bcmod($inp_int, $cnt);
+        } else {
+            $decodeInt = $inp_int;
+        }
+
+        // æš—å·æ–‡å­—ã‚’åŸºæº–ã«ã—ã¦ç¹°ã‚Šä¸ŠãŒã‚‹æ™‚ã®å‡¦ç†ã€‚
+        $inputStrNo = array_keys($this->decodeList_g, $inp_str);
+        $getNo = $decodeInt + $inputStrNo[0];
+        if ($cnt <= $getNo) {
+            $getNo -= $cnt;
+        }
+        return $this->decodeList_g[$getNo];
+    }
+
+    /**
+     * å¥‡æ•°ã®ãƒ‡ã‚³ãƒ¼ãƒ‰ã€‚
+    */
+    private function decode_kisuu($inp_str, $inp_int) {
+
+        // æš—å·æ–‡å­—åˆ—ã®æ•°ã‚’å–å¾—ã€‚ã€€26
+        $cnt = count($this->decodeList_k);
+
+        // æš—å·æ•°å­—ãŒæš—å·æ–‡å­—åˆ—ã®æ•°ä»¥å†…ã«ãªã‚‹ã¾ã§å¼•ãã€‚
+        if ($inp_int >= $cnt) {
+            $decodeInt = bcmod($inp_int, $cnt);
+        } else {
+            $decodeInt = $inp_int;
+        }
+
+        // æš—å·æ–‡å­—ã‚’åŸºæº–ã«ã—ã¦ç¹°ã‚Šä¸ŠãŒã‚‹æ™‚ã®å‡¦ç†ã€‚
+        $inputStrNo = array_keys($this->decodeList_k, $inp_str);
+        $getNo = $decodeInt + $inputStrNo[0];
+
+        if ($cnt <= $getNo) {
+            $getNo -= $cnt;
+        }
+        return $this->decodeList_k[$getNo];
+    }
 }

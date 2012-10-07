@@ -3,28 +3,28 @@
 require_once 'decode_class.php';
 
 
-/*
- * ‰ð“Çƒ{ƒ^ƒ“‰Ÿ‰ºŽžBthe-awesomeblackhole
+/**
+ * è§£èª­ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚ã€‚the-awesomeblackhole
  */
 if (isset($_POST["decode_sub"])) {
-	
-	// “ü—Í‚³‚ê‚½ˆÃ†‚ðŽæ“¾B
-	$inputStr = $_POST["input_str"];
-	$inputInt = $_POST["input_int"];
-	
-	$decodeObj = new Decode_Class();
-	$decodeString = $decodeObj->getDecodeString($inputStr, $inputInt);
-	
-	echo $decodeString;
+
+    // å…¥åŠ›ã•ã‚ŒãŸæš—å·ã‚’å–å¾—ã€‚
+    $inputStr = $_POST["input_str"];
+    $inputInt = $_POST["input_int"];
+
+    $decodeObj = new Decode_Class();
+    $decodeString = $decodeObj->getDecodeString($inputStr, $inputInt);
+
+    echo $decodeString;
 }
 ?>
 
 <html>
 <body>
 <form action="./index.php" method="post">
-ˆÃ†•¶Žš<input type="text" name="input_str" value="" />
-ˆÃ†”Žš<input type="text" name="input_int" value="" />
-<input type="submit" name="decode_sub" value="‰ð“Ç" />
+æš—å·æ–‡å­—<input type="text" name="input_str" value="" />
+æš—å·æ•°å­—<input type="text" name="input_int" value="" />
+<input type="submit" name="decode_sub" value="è§£èª­" />
 </form>
 </body>
 </html>
