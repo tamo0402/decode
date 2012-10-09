@@ -14,15 +14,16 @@ class Decode_Class {
     // 暗号文字列。
     private $inputStr;
     private $inputInt;
+    private $inputList;
     private $decodeList;
 
 
     /**
      * コンストラクタ。
      */
-    public function __construct($inp_str, $inp_int) {
-		$this->inputStr = $inp_str;
-		$this->inputInt = $inp_int;
+    public function __construct($inp_str) {
+        $this->inputStr = trim($inp_str);
+        $this->inputList = preg_split("/([a-z])/", $this->inputStr, null, PREG_SPLIT_DELIM_CAPTURE);
     }
 
 
@@ -32,22 +33,31 @@ class Decode_Class {
      * @return String 解読された文字。
      */
     public function decode() {
-
-        // 偶数か奇数か。
-        if (bcmod($this->inputInt, 2) == 0) {
-            // 偶数　降順。
-            $this->decodeList = $this->decodeList_g;
-
-        } else {
-            // 奇数　昇順。
-            $this->decodeList = $this->decodeList_k;
+        $answer = '';
+        foreach ($this->inputList as $input) {
+            if ($input == "") {
+                // なんか最初に空文字入っちゃうので。
+            } else if (preg_match("/^[a-z]/", $input)) {
+                $this->inputStr = $input;
+            } else {
+                $this->inputInt = $input;
+                // 偶数か奇数か。(ここがひっかけ？ %で割るとINT型までの範囲しかできないっぽいPHPだけ？）
+                if (bcmod($this->inputInt, 2) == 0) {
+                    // 偶数　降順。
+                    $this->decodeList = $this->decodeList_g;
+                } else {
+                    // 奇数　昇順。
+                    $this->decodeList = $this->decodeList_k;
+                }
+                $answer .= $this->_decode();
+            }
         }
-        return $this->_decode();
+        return $answer;
     }
 
 
     /**
-     * 偶数のデコード。
+     * デコード処理をする。
      */
     private function _decode() {
 
