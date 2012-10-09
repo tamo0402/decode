@@ -1,5 +1,7 @@
 <?php
 
+ini_set("display_errors", 1);
+
 require_once 'decode_class.php';
 
 
@@ -9,13 +11,11 @@ require_once 'decode_class.php';
 if (isset($_POST["decode_sub"])) {
 
     // 入力された暗号を取得。
-    $inputStr = $_POST["input_str"];
-    $inputInt = $_POST["input_int"];
+    $inputStr = trim($_POST["input_str"]);
+    $inputInt = trim($_POST["input_int"]);
 
-    $decodeObj = new Decode_Class();
-    $decodeString = $decodeObj->getDecodeString($inputStr, $inputInt);
-
-    echo $decodeString;
+    $obj = new Decode_Class($inputStr, $inputInt);
+    echo $obj->getAnswer();
 }
 ?>
 
