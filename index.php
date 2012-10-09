@@ -14,8 +14,8 @@ if (isset($_POST["decode_sub"])) {
     $inputStr = trim($_POST["input_str"]);
     $inputInt = trim($_POST["input_int"]);
 
-    $obj = new Decode_Class($inputStr, $inputInt);
-    echo $obj->getAnswer();
+    $decodeObj = new Decode_Class($inputStr, $inputInt);
+    echo $decodeObj->decode();
 }
 ?>
 
